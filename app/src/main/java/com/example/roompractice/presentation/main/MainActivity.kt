@@ -5,13 +5,15 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.roompractice.R
 import com.example.roompractice.presentation.base.BaseActivity
+import com.example.roompractice.presentation.main.profile.ProfileFragment
 
+@Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //testFragment()
+        testFragment()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -33,9 +35,9 @@ class MainActivity : BaseActivity() {
     /**
      * Test the fragment to inflate on [MainActivity]
      */
-    /*private fun testFragment() {
+    private fun testFragment() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_container, ProfileFragment())
             .commit()
-    }*/
+    }
 }

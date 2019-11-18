@@ -1,40 +1,34 @@
 package com.example.roompractice.presentation.auth
 
+import android.graphics.drawable.Drawable
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import android.view.Menu
-import android.view.MenuItem
+import com.bumptech.glide.RequestManager
 import com.example.roompractice.R
 import dagger.android.support.DaggerAppCompatActivity
-
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_auth.*
 
 class AuthActivity : DaggerAppCompatActivity() {
 
+    @Inject
+    lateinit var logo: Drawable
+
+    @Inject
+    lateinit var requestManager: RequestManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-        setSupportActionBar(toolbar)
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
-        }
+        setLogo()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
+    /**
+     * Set the logo in the image view
+     */
+    private fun setLogo() {
+        requestManager
+            .load(logo)
+            .into(login_logo)
     }
 }

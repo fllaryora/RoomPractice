@@ -31,6 +31,7 @@ ext{
     retrofitVersion = '2.6.1'
     rxcalladapterVersion = '2.6.1'
     //rxcalladapterVersion = '2.5.0'
+    glideVersion = '4.10.0'
  }
 
 task clean(type: Delete) {

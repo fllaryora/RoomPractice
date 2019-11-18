@@ -1,5 +1,6 @@
 package com.example.roompractice.di
 
+import com.example.roompractice.di.auth.AuthViewModelModule
 import com.example.roompractice.presentation.auth.AuthActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -16,7 +17,7 @@ import dagger.android.ContributesAndroidInjector
  *
  * {@linkplain dagger.android.AndroidInjection#inject(Activity)}
  *
- * {@link com.example.advancedagger2.viewmodel.AuthViewModel} can be access from Auth Activity
+ * [AuthViewModel] can be access from Auth Activity
  * only so it is the concept of sub-modules
  *
  */
@@ -27,8 +28,13 @@ abstract class ActivityBuilderModule {
      * Let dagger knows that all activity is a potential client
      * Automatically create sub-component
      *
+     *  * Aca esta la verga del scopping !!!
+     * al setear un modulo particular lara el authactivity
      * @return
      */
-    @ContributesAndroidInjector
+    @ContributesAndroidInjector (
+        modules = [AuthViewModelModule::class
+        ]
+    )
     abstract fun contributeAuthActivity() : AuthActivity
 }

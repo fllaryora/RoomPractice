@@ -1,5 +1,8 @@
 package com.example.roompractice.presentation.auth
 
+/**
+ * ES la forma como se debe wrapear un modelo de usuario de autenticacion.
+ */
 class AuthResource<T>(val status: AuthStatus, val data: T?, val message: String?) {
 
     enum class AuthStatus {

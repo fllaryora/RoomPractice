@@ -72,6 +72,9 @@ class AuthActivity : DaggerAppCompatActivity() {
     private fun subscribeObserver() {
         viewModel.observeUser().observe(this, Observer {authResource ->
             //Log.d(TAG,  "On Change: ${authResource.emailAddress}")
+            /**
+             * aca manejo el cambio de estado de la auth
+             */
             when(authResource.status) {
                 AuthResource.AuthStatus.LOADING -> {
                     showProgressBar(true)
@@ -88,6 +91,7 @@ class AuthActivity : DaggerAppCompatActivity() {
                 }
 
                 AuthResource.AuthStatus.ERROR -> {
+                    //TODO detectar la desconeccion de internet
                     showProgressBar(false)
                     Toast.makeText(this,
                         "${authResource.message} \nDid you entered user id between 1 and 10?",

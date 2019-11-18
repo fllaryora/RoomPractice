@@ -12,6 +12,8 @@ import javax.inject.Singleton
 /**
  * Session Manager Class
  * Guarda la informacion para saver si el usuario esta autenticado o no.
+ *
+ * se evita tener un MediatorLiveData en cada activity
  */
 @Singleton
 class SessionManager @Inject constructor() {

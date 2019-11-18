@@ -2,7 +2,7 @@ package com.example.roompractice.presentation.base
 
 import com.example.roompractice.di.DaggerAppComponent
 import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import dagger.android.support.DaggerApplication
 
 /**
  * The Base Application which will live entire lifecycle of an application.

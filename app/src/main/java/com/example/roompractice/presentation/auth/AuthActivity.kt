@@ -1,19 +1,19 @@
-package com.example.roompractice.presentation
+package com.example.roompractice.presentation.auth
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import com.example.roompractice.R
+import dagger.android.support.DaggerAppCompatActivity
 
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_auth.*
 
-class MainActivity : AppCompatActivity() {
+class AuthActivity : DaggerAppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_auth)
         setSupportActionBar(toolbar)
 
         fab.setOnClickListener { view ->

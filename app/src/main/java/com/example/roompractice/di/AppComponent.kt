@@ -1,6 +1,7 @@
 package com.example.roompractice.di
 
 import android.app.Application
+import com.example.roompractice.presentation.SessionManager
 import com.example.roompractice.presentation.base.BaseApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -55,4 +56,10 @@ interface AppComponent : AndroidInjector<BaseApplication> {
          */
         fun build() : AppComponent
     }
+
+
+    /**
+     * Session manager can be access any where in the application
+     */
+    fun sessionManager() : SessionManager
 }

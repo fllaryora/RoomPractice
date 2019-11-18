@@ -26,16 +26,6 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
-    @Singleton
-    @Provides
-    internal fun provideRetrofitInstance(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
     /**
      * internal es el equivalente al static en java para dagger.
      * La funcion manejara los placeholders y los errores de network cuando glide haga llamadas al
@@ -60,5 +50,18 @@ class AppModule {
     @Provides
     internal fun provideAppDrawable(application: Application): Drawable {
         return ContextCompat.getDrawable(application, R.drawable.logo)!!
+    }
+
+    /**
+     * retrofit para TODOS.
+     */
+    @Singleton
+    @Provides
+    internal fun provideRetrofitInstance(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl(BuildConfig.BASE_URL)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
     }
 }

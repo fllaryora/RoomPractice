@@ -1,5 +1,6 @@
 package com.example.roompractice.di
 
+import com.example.roompractice.di.auth.AuthModule
 import com.example.roompractice.di.auth.AuthViewModelModule
 import com.example.roompractice.presentation.auth.AuthActivity
 import dagger.Module
@@ -33,7 +34,9 @@ abstract class ActivityBuilderModule {
      * @return
      */
     @ContributesAndroidInjector (
-        modules = [AuthViewModelModule::class
+        modules = [
+            AuthViewModelModule::class,
+            AuthModule::class
         ]
     )
     abstract fun contributeAuthActivity() : AuthActivity

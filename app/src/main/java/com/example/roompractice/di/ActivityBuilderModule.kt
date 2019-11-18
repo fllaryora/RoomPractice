@@ -3,6 +3,7 @@ package com.example.roompractice.di
 import com.example.roompractice.di.auth.AuthModule
 import com.example.roompractice.di.auth.AuthViewModelModule
 import com.example.roompractice.presentation.auth.AuthActivity
+import com.example.roompractice.presentation.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -40,4 +41,8 @@ abstract class ActivityBuilderModule {
         ]
     )
     abstract fun contributeAuthActivity() : AuthActivity
+
+
+    @ContributesAndroidInjector
+    abstract fun contributeMainActivity() : MainActivity
 }

@@ -1,5 +1,6 @@
 package com.example.roompractice.presentation.auth
 
+import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,8 +14,10 @@ import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 import androidx.lifecycle.Observer
+import com.example.roompractice.presentation.main.MainActivity
 import kotlinx.android.synthetic.main.activity_auth.*
 
+//TODO extender de baseActivity
 class AuthActivity : DaggerAppCompatActivity() {
 
     val TAG = AuthActivity::class.java.name
@@ -83,6 +86,7 @@ class AuthActivity : DaggerAppCompatActivity() {
                 AuthResource.AuthStatus.AUTHENTICATED -> {
                     showProgressBar(false)
                     Log.d(TAG,  "Login Success: ${authResource.data?.emailAddress}")
+                    onLoginSuccess()
                 }
 
                 AuthResource.AuthStatus.NOT_AUTHENTICATED -> {
@@ -109,5 +113,15 @@ class AuthActivity : DaggerAppCompatActivity() {
      */
     private fun showProgressBar(isVisible: Boolean) {
         progress_bar.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
+
+    /**
+     * Navigate to [MainActivity] from [AuthActivity] on login success
+     */
+    private fun onLoginSuccess() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

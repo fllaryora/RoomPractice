@@ -11,6 +11,7 @@ import javax.inject.Singleton
 
 /**
  * Session Manager Class
+ * Guarda la informacion para saver si el usuario esta autenticado o no.
  */
 @Singleton
 class SessionManager @Inject constructor() {
@@ -26,6 +27,7 @@ class SessionManager @Inject constructor() {
             cachedUser.value = AuthResource.loading(null)
             cachedUser.addSource(source, Observer {
                 cachedUser.value = it
+                //apenas lo deja de usar lo remueve al source
                 cachedUser.removeSource(source)
             })
         } else {

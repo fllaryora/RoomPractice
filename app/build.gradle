@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion androidCompileSdkVersion
-    buildToolsVersion buildToolsVersion
+    compileSdkVersion 29
+    buildToolsVersion "29.0.1"
     defaultConfig {
         vectorDrawables.useSupportLibrary = true
         applicationId "com.example.roompractice"
@@ -30,9 +30,11 @@ android {
     }
     buildTypes {
         debug {
+            buildConfigField "String", "BASE_URL", ' "https://jsonplaceholder.typicode.com/"'
             minifyEnabled false
         }
         release {
+            buildConfigField "String", "BASE_URL", ' "https://jsonplaceholder.typicode.com/"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -42,36 +44,53 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //IDE
+   //IDE
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //multidex
     implementation "com.android.support:multidex:$multidexVersion"
-
-    //supports
+    
+    //AndroidX
     implementation "androidx.appcompat:appcompat:$androidxAppcompatVersion"
     implementation "androidx.core:core-ktx:$androidxAppcompatVersion"
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
-    implementation "com.google.android.material:material:$materialVersion"
     implementation "androidx.recyclerview:recyclerview:$androidxVersion"
     implementation "androidx.cardview:cardview:$androidxVersion"
-
-    // Lifecycle, LiveData y ViewModel
-    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion"
+    
+     // Lifecycle, LiveData y ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.0.0'
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion"
+    implementation "androidx.legacy:legacy-support-v4:$legacySupportVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycleVersion"
+    
+    //Material
+    implementation "com.google.android.material:material:$materialVersion"
 
-
-    // Dagger
+    //DAGGER 2.2
     implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+    implementation "com.google.dagger:dagger-android:$daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$daggerVersion" // if you use the support libraries
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+    // Reactive Streams (convert Observable to LiveData)
+    implementation "android.arch.lifecycle:reactivestreams:$reactivestreamsVersion"
 
-    // Room
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    // Rx-Retrofit Call Adapter
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rxcalladapterVersion" // Retrofit call adapter
+
+    //GLIDE
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
+     // Room
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     // acces to database via server

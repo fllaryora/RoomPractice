@@ -25,8 +25,7 @@ class SessionManager @Inject constructor() {
     private val cachedUser = MediatorLiveData<AuthResource<Users>>()
 
     fun authenticatedWithId(source: LiveData<AuthResource<Users>>) {
-        //TODO VEr esta condicion en kotlin
-        if(cachedUser != null) {
+        if(cachedUser.value == null) {
             cachedUser.value = AuthResource.loading(null)
             cachedUser.addSource(source, Observer {
                 cachedUser.value = it
@@ -35,12 +34,14 @@ class SessionManager @Inject constructor() {
             })
         } else {
             Log.d(TAG, "authenticatedWithId: previous session detected")
+            //todo loguear y no dejarlo colgado
         }
     }
 
     fun logout() {
         Log.d(TAG, "logout: logging out..")
         cachedUser.value = AuthResource.logout()
+        //todo No desloguea bien....
     }
 
     fun getAuthUser() : LiveData<AuthResource<Users>> {

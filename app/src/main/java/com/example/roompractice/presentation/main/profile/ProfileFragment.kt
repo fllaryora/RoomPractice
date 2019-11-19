@@ -47,6 +47,12 @@ class ProfileFragment : DaggerFragment() {
     }
 
     private fun subscribeObservers() {
+        /**
+         * Se tiene que tener en cuenta que el ciclo de vida de los fragments es diferente al ciclo de vida
+         * de las activities.
+         * Por esta razon es diferente al de la activity
+         * Y debemos estar seguros de remover los viejos vinagres (los observers) todo al rededor.
+         */
         profileViewModel.getAuthenticatedUser().removeObservers(viewLifecycleOwner)
         profileViewModel.getAuthenticatedUser().observe(viewLifecycleOwner, Observer {
             it?.let { resource ->

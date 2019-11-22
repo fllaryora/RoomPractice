@@ -1,5 +1,6 @@
 package com.example.roompractice.di.main
 
+import com.example.roompractice.presentation.main.post.PostsFragment
 import com.example.roompractice.presentation.main.profile.ProfileFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -12,4 +13,7 @@ abstract class MainFragmentBuilderModule {
 
     @ContributesAndroidInjector
     abstract fun contributeProfileFragment() : ProfileFragment
+
+    @ContributesAndroidInjector
+    abstract fun contributePostFragment() : PostsFragment
 }

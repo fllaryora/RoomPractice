@@ -3,6 +3,7 @@ package com.example.roompractice.di.main
 import androidx.lifecycle.ViewModel
 import com.example.roompractice.di.ViewModelKey
 import com.example.roompractice.presentation.main.profile.ProfileViewModel
+import com.example.roompractice.presentation.main.post.PostsViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -23,4 +24,9 @@ abstract class MainViewModelModule {
     @IntoMap
     @ViewModelKey(ProfileViewModel::class)
     abstract fun bindProfileViewModel(profileViewModel: ProfileViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PostsViewModel::class)
+    abstract fun bindPostsViewModel(postsViewModel: PostsViewModel) : ViewModel
 }

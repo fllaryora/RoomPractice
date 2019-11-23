@@ -1,6 +1,7 @@
 package com.example.roompractice.di.main
 
 import com.example.roompractice.data.network.main.MainApi
+import com.example.roompractice.presentation.main.post.PostsRecyclerAdapter
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -17,4 +18,10 @@ class MainModule {
     internal fun provideMainApi(retrofit: Retrofit): MainApi {
         return retrofit.create(MainApi::class.java)
     }
+
+    @Provides
+    internal fun providePostsRecyclerAdapter(): PostsRecyclerAdapter {
+        return PostsRecyclerAdapter()
+    }
+
 }

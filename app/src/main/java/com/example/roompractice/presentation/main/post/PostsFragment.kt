@@ -8,10 +8,12 @@ import android.view.ViewGroup
 import androidx.annotation.Nullable
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roompractice.R
 import com.example.roompractice.presentation.main.Resource
 import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
+import com.example.roompractice.utils.VerticalSpacingItemDecoration
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_post.*
@@ -23,6 +25,9 @@ class PostsFragment constructor(): DaggerFragment() {
 
     @Inject
     lateinit var viewModelProviderFactory: ViewModelProviderFactory
+
+    @Inject
+    lateinit var postsRecyclerAdapter: PostsRecyclerAdapter
 
     private lateinit var postsViewModel: PostsViewModel
     private lateinit var recyclerView: RecyclerView
@@ -44,6 +49,7 @@ class PostsFragment constructor(): DaggerFragment() {
         postsViewModel = ViewModelProviders.of(this,viewModelProviderFactory ).
             get(PostsViewModel::class.java)
 
+        initRecyclerView()
         subscribeObservers()
     }
 
@@ -64,7 +70,8 @@ class PostsFragment constructor(): DaggerFragment() {
                     }
                     Resource.Status.SUCCESS -> {
                         Log.d(TAG, "onChanged: got posts...")
-                        //TODO Setear el adapter
+                        val unwrappedData = resource.data ?: listOf()
+                        postsRecyclerAdapter.setPosts(unwrappedData)
                     }
 
                     Resource.Status.ERROR -> {
@@ -74,5 +81,12 @@ class PostsFragment constructor(): DaggerFragment() {
                 }
             }
         })
+    }
+
+    private fun initRecyclerView(){
+        recyclerView.layoutManager = LinearLayoutManager(activity)
+        val verticalSpacingItemDecoration = VerticalSpacingItemDecoration(15)
+        recyclerView.addItemDecoration(verticalSpacingItemDecoration)
+        recyclerView.adapter = postsRecyclerAdapter
     }
 }

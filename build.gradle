@@ -32,6 +32,7 @@ ext {
     androidxVersion = '1.0.0'
     junitVersion = '4.12'
     amitVersion ='1.0.6'
+    navVersion = '2.2.0-alpha01'
     roomVersion = '2.0.0'
     daggerVersion = '2.25.2'
     lifecycleVersion = '2.1.0-alpha03'

@@ -97,6 +97,11 @@ dependencies {
     //debugImplementation "com.amitshekhar.android:debug-db:$amitVersion"
 
 
+    // architecture comp. navigation
+    implementation "androidx.navigation:navigation-fragment:$navVersion"
+    implementation "androidx.navigation:navigation-ui:$navVersion"
+    implementation "androidx.navigation:navigation-runtime:$navVersion"
+
     //TESTs
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation 'androidx.test:runner:1.2.0'

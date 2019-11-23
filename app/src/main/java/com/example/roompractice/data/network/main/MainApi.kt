@@ -13,6 +13,6 @@ interface MainApi {
      */
     // /posts?userId=1/
     @GET("posts")
-    fun getUserById(@Query("id") id: Int): Flowable<List<Post>>
+    fun getPostFromUsers(@Query("id") id: Int): Flowable<List<Post>>
 
 }

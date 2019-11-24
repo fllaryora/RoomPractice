@@ -1,9 +1,11 @@
 package com.example.roompractice.di
 
 import com.example.roompractice.di.auth.AuthModule
+import com.example.roompractice.di.auth.AuthScope
 import com.example.roompractice.di.auth.AuthViewModelModule
 import com.example.roompractice.di.main.MainFragmentBuilderModule
 import com.example.roompractice.di.main.MainModule
+import com.example.roompractice.di.main.MainScope
 import com.example.roompractice.di.main.MainViewModelModule
 import com.example.roompractice.presentation.auth.AuthActivity
 import com.example.roompractice.presentation.main.MainActivity
@@ -29,6 +31,7 @@ import dagger.android.ContributesAndroidInjector
 
 @Module
 abstract class ActivityBuilderModule {
+
     /**
      * Let dagger knows that all activity is a potential client
      * Automatically create sub-component
@@ -36,7 +39,12 @@ abstract class ActivityBuilderModule {
      *  * Aca esta la verga del scopping !!!
      * al setear un modulo particular lara el authactivity
      * @return
+     *
+     * Apply the auth scope to the sub component,
+     * that subcomponent will own authscope
+     *
      */
+    @AuthScope
     @ContributesAndroidInjector (
         modules = [
             AuthViewModelModule::class,
@@ -46,6 +54,7 @@ abstract class ActivityBuilderModule {
     abstract fun contributeAuthActivity() : AuthActivity
 
 
+    @MainScope
     @ContributesAndroidInjector (
         modules = [
             MainFragmentBuilderModule::class,

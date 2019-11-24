@@ -14,11 +14,13 @@ class MainModule {
      *
      * @param retrofit The retrofit instance which can be access from app component
      */
+    @MainScope
     @Provides
     internal fun provideMainApi(retrofit: Retrofit): MainApi {
         return retrofit.create(MainApi::class.java)
     }
 
+    @MainScope
     @Provides
     internal fun providePostsRecyclerAdapter(): PostsRecyclerAdapter {
         return PostsRecyclerAdapter()

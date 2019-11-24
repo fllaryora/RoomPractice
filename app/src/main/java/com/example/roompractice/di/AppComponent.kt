@@ -22,6 +22,12 @@ import javax.inject.Singleton
  *
  * Anotated with [Singleton] Scope to tell dagger to keep it in the memory while application exists
  * and destroy it when application destroy
+ *
+ * Scopes are a way to give a name to the lifetime of a component.
+ * And Then all dependencies that exists inside that component are scoped to that component.
+ * So all the dependencies of a particular scoped component will no be recreated anywhere outside of that scope.
+ *
+ *
  */
 
 @Singleton

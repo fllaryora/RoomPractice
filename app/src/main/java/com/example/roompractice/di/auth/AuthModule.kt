@@ -13,6 +13,7 @@ class AuthModule {
      *
      * @param retrofit The retrofit instance which can be access from app component
      */
+    @AuthScope
     @Provides
     internal fun provideAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    app:startDestination="@+id/profileScreen">
+
+    <fragment android:id="@+id/profileScreen"
+        android:name="com.example.roompractice.presentation.main.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile"/>
+
+    <fragment android:id="@+id/postScreen"
+        android:name="com.example.roompractice.presentation.main.post.PostsFragment"
+        android:label="@string/posts"
+        tools:layout="@layout/fragment_post"/>
+
+    <!-- to solve Navigation graph is not referenced
+ you have to have an activity layout
+ with  a fragment component with  app:navGraph="@navigation/main"-->
+ </navigation>
+

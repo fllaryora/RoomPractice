@@ -9,11 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.roompractice.R
 import com.example.roompractice.data.model.Users
+import com.example.roompractice.databinding.FragmentProfileBinding
 import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
 import dagger.android.support.DaggerFragment
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 import com.example.roompractice.presentation.auth.AuthResource
+import com.example.roompractice.presentation.databinding.withTwoWayBinding
 
 /**
  * Profile Fragment
@@ -30,11 +32,15 @@ class ProfileFragment : DaggerFragment() {
         val TAG = ProfileFragment::class.java.name
     }
 
+    /**
+     * binding by lazy FragmentProfileBinding
+     */
+    lateinit var binding : FragmentProfileBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-
         Log.d(TAG, "Profile Fragment")
-
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        binding = withTwoWayBinding(inflater,R.layout.fragment_profile, container)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

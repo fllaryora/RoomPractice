@@ -8,7 +8,9 @@ import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.roompractice.R
+import com.example.roompractice.databinding.ActivityMainBinding
 import com.example.roompractice.presentation.base.BaseActivity
+import com.example.roompractice.presentation.databinding.ActivityBindingProperty
 import com.example.roompractice.utils.Constants
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
@@ -18,9 +20,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private val navController by lazy { findNavController(nav_host_fragment) }
 
+    /**
+     * binding by lazy ActivityBindingProperty
+     */
+    val binding : ActivityMainBinding by ActivityBindingProperty(R.layout.activity_main)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        /**
+         *  two way
+         *  but it isn't called here activity never create the view
+         *
+         */
+        binding.lifecycleOwner = this
         initNavigation()
     }
 

@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roompractice.R
+import com.example.roompractice.databinding.FragmentPostBinding
+import com.example.roompractice.presentation.databinding.withTwoWayBinding
 import com.example.roompractice.presentation.main.Resource
 import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
 import com.example.roompractice.utils.VerticalSpacingItemDecoration
@@ -32,6 +34,11 @@ class PostsFragment constructor(): DaggerFragment() {
     private lateinit var postsViewModel: PostsViewModel
     private lateinit var recyclerView: RecyclerView
 
+    /**
+     * binding by lazy FragmentProfileBinding
+     */
+    lateinit var binding : FragmentPostBinding
+
     @Nullable
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +46,8 @@ class PostsFragment constructor(): DaggerFragment() {
         savedInstanceState: Bundle?
     ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
-        return inflater.inflate(R.layout.fragment_post, container, false)
+        binding = withTwoWayBinding(inflater,R.layout.fragment_post, container)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

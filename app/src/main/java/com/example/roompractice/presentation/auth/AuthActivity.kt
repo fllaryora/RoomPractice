@@ -14,10 +14,11 @@ import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 import androidx.lifecycle.Observer
+import com.example.roompractice.databinding.ActivityAuthBinding
+import com.example.roompractice.presentation.databinding.ActivityBindingProperty
 import com.example.roompractice.presentation.main.MainActivity
 import kotlinx.android.synthetic.main.activity_auth.*
 
-//TODO extender de baseActivity
 class AuthActivity : DaggerAppCompatActivity() {
 
     val TAG = AuthActivity::class.java.name
@@ -36,14 +37,23 @@ class AuthActivity : DaggerAppCompatActivity() {
 
     lateinit var viewModel: AuthViewModel
 
+    /**
+     * binding by lazy ActivityBindingProperty
+     */
+    val binding : ActivityAuthBinding by ActivityBindingProperty(R.layout.activity_auth)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_auth)
 
         // Teniendo la dependencia del lifecycle puesta en el build.gradle
         // se puede conectar el activity con el viewModel
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(AuthViewModel::class.java)
-
+        /**
+         *  two way
+         *  but it isn't called here activity never create the view
+         *
+         */
+        binding.lifecycleOwner = this
         setLogo()
         loginButtonClick()
         subscribeObserver()

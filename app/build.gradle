@@ -28,6 +28,7 @@ android {
     dataBinding {
         enabled = true
     }
+
     buildTypes {
         debug {
             buildConfigField "String", "BASE_URL", ' "https://jsonplaceholder.typicode.com/"'
@@ -56,7 +57,10 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintlayoutVersion"
     implementation "androidx.recyclerview:recyclerview:$androidxVersion"
     implementation "androidx.cardview:cardview:$androidxVersion"
-    
+
+    //databinding
+    kapt "com.android.databinding:compiler:$compilerVersion"
+
      // Lifecycle, LiveData y ViewModel
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-runtime:$lifecycleVersion"

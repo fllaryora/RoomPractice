@@ -9,7 +9,6 @@ import androidx.annotation.Nullable
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.roompractice.R
 import com.example.roompractice.databinding.FragmentPostBinding
 import com.example.roompractice.presentation.databinding.withTwoWayBinding
@@ -18,7 +17,6 @@ import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
 import com.example.roompractice.utils.VerticalSpacingItemDecoration
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
-import kotlinx.android.synthetic.main.fragment_post.*
 
 class PostsFragment constructor(): DaggerFragment() {
     companion object {
@@ -32,7 +30,6 @@ class PostsFragment constructor(): DaggerFragment() {
     lateinit var postsRecyclerAdapter: PostsRecyclerAdapter
 
     private lateinit var postsViewModel: PostsViewModel
-    private lateinit var recyclerView: RecyclerView
 
     /**
      * binding by lazy FragmentProfileBinding
@@ -52,10 +49,14 @@ class PostsFragment constructor(): DaggerFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = recycler_view
 
         postsViewModel = ViewModelProviders.of(this,viewModelProviderFactory ).
             get(PostsViewModel::class.java)
+
+        /**
+         * This bind the databinding with MVVVM
+         */
+        //there is not data & variables to bond binding.viewModel = postsViewModel
 
         initRecyclerView()
         subscribeObservers()
@@ -92,9 +93,9 @@ class PostsFragment constructor(): DaggerFragment() {
     }
 
     private fun initRecyclerView(){
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        binding.recyclerView.layoutManager = LinearLayoutManager(activity)
         val verticalSpacingItemDecoration = VerticalSpacingItemDecoration(15)
-        recyclerView.addItemDecoration(verticalSpacingItemDecoration)
-        recyclerView.adapter = postsRecyclerAdapter
+        binding.recyclerView.addItemDecoration(verticalSpacingItemDecoration)
+        binding.recyclerView.adapter = postsRecyclerAdapter
     }
 }

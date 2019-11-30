@@ -27,8 +27,9 @@
             app:layout_constraintTop_toBottomOf="@+id/login_logo"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:hint="User id"
+            android:hint="@string/user_id_hint"
             android:textColor="#000"
+            android:text="@={viewModel.userModel.id}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/user_id_input"
@@ -42,7 +43,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/login_button"
             android:layout_marginTop="15dp"
-            android:text="Login"/>
+            android:text="@string/login_action"/>
 
         <ProgressBar
             app:layout_constraintTop_toTopOf="parent"

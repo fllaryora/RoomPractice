@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="model"
+            type="com.example.roompractice.data.model.Post" />
+    </data>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -13,8 +18,7 @@
         android:id="@+id/title"
         android:textColor="#000"
         android:textSize="17sp"
-        android:text="this is a title"/>
-
+        android:text="@{model.title}"/>
 
 </LinearLayout>
 </layout>

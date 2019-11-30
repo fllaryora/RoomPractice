@@ -27,7 +27,8 @@ class AuthViewModel @Inject constructor (private var authApi: AuthApi,
         private val compositeDisposable = CompositeDisposable()
 
 
-    fun authenticateUserById(userID: Int) {
+    fun authenticateUserById() {
+        val userID :Int = userModel.value?.id?:-1
         sessionManager.authenticatedWithId(queryUserId(userID))
     }
 
@@ -77,5 +78,9 @@ class AuthViewModel @Inject constructor (private var authApi: AuthApi,
     init {
         showProgressBar.value = false
         userModel.value = Users()
+    }
+
+    fun canPerformLogin():Boolean {
+        return userModel.value?.id != null
     }
 }

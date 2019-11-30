@@ -100,11 +100,9 @@ dependencies {
     // acces to database via server
     //debugImplementation "com.amitshekhar.android:debug-db:$amitVersion"
 
-
     // architecture comp. navigation
-    implementation "androidx.navigation:navigation-fragment:$navVersion"
-    implementation "androidx.navigation:navigation-ui:$navVersion"
-    implementation "androidx.navigation:navigation-runtime:$navVersion"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navVersion"
 
     //TESTs
     testImplementation "junit:junit:$junitVersion"

@@ -4,4 +4,6 @@
     <string name="logout">Logout</string>
     <string name="profile">Profile</string>
     <string name="posts">Post</string>
+    <string name="login_action">Login</string>
+    <string name="user_id_hint">User id</string>
 </resources>

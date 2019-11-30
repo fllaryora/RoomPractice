@@ -12,7 +12,6 @@ import com.example.roompractice.data.model.Users
 import com.example.roompractice.databinding.FragmentProfileBinding
 import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
 import dagger.android.support.DaggerFragment
-import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
 import com.example.roompractice.presentation.auth.AuthResource
 import com.example.roompractice.presentation.databinding.withTwoWayBinding
@@ -47,7 +46,10 @@ class ProfileFragment : DaggerFragment() {
         Log.d(TAG, "Profile View Holder was created....")
 
         profileViewModel = ViewModelProviders.of(this, providerFactory).get(ProfileViewModel::class.java)
-
+        /**
+         * This bind the databinding with MVVVM
+         */
+        binding.viewModel = profileViewModel
         subscribeObservers()
 
     }
@@ -64,11 +66,11 @@ class ProfileFragment : DaggerFragment() {
             it?.let { resource ->
                 when(resource.status) {
                     AuthResource.AuthStatus.AUTHENTICATED -> {
-                        setUserInfo(resource.data)
+                        profileViewModel.setUserInfo(resource.data)
                     }
 
                     AuthResource.AuthStatus.ERROR -> {
-                        setErrorMessage(resource.message)
+                        profileViewModel.setErrorMessage(resource.message)
                     }
 
                     else -> {
@@ -79,15 +81,4 @@ class ProfileFragment : DaggerFragment() {
         })
     }
 
-    private fun setErrorMessage(message: String?) {
-        email.text = message
-        username.text = "Error"
-        website.text = "Error"
-    }
-
-    private fun setUserInfo(data: Users?) {
-        email.text = data?.emailAddress
-        username.text = data?.userName
-        website.text = data?.website
-    }
 }

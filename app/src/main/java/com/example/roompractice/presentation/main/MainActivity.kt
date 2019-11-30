@@ -6,7 +6,7 @@ import android.view.MenuItem
 import androidx.core.view.GravityCompat
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavOptions
-import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.roompractice.R
 import com.example.roompractice.databinding.ActivityMainBinding
@@ -15,13 +15,14 @@ import com.example.roompractice.presentation.databinding.ActivityBindingProperty
 import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
 import com.example.roompractice.utils.Constants
 import com.google.android.material.navigation.NavigationView
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private val navController by lazy { findNavController(nav_host_fragment) }
+    private val navController by lazy {
+        findNavController(R.id.nav_host_fragment)
+    }
 
     /**
      * Se va a encargar de instanciar el viewModel
@@ -36,7 +37,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
      */
     val binding : ActivityMainBinding by ActivityBindingProperty(R.layout.activity_main)
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Teniendo la dependencia del lifecycle puesta en el build.gradle
@@ -48,6 +48,10 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
          *
          */
         binding.lifecycleOwner = this
+        /**
+         * This bind the databinding with MVVVM
+         */
+        binding.viewModel = viewModel
         initNavigation()
     }
 
@@ -64,11 +68,11 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             }
 
             android.R.id.home -> {
-                if(drawer_layout.isDrawerOpen(GravityCompat.START)) {
-                    drawer_layout.closeDrawer(GravityCompat.START)
-                    return Constants.CLICK_IS_CONSUMED
+                return if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    binding.drawerLayout.closeDrawer(GravityCompat.START)
+                    Constants.CLICK_IS_CONSUMED
                 } else {
-                    return Constants.CLICK_IS_NOT_CONSUMED
+                    Constants.CLICK_IS_NOT_CONSUMED
                 }
             }
             else -> {
@@ -82,12 +86,12 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
      */
     private fun initNavigation() {
 
-        NavigationUI.setupActionBarWithNavController(this, navController, drawer_layout)
-        NavigationUI.setupWithNavController(nav_view, navController)
+        NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
+        NavigationUI.setupWithNavController(binding.navView, navController)
         /**
          * para que consuma los clicks locales en onNavigationItemSelected
          */
-        nav_view.setNavigationItemSelectedListener(this)
+        binding.navView.setNavigationItemSelectedListener(this)
 
     }
 
@@ -119,7 +123,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         /**
          * lo llevamos de vuelta al START si no seleccionamos nada al cerrar.
          */
-        drawer_layout.closeDrawer(GravityCompat.START)
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
         return Constants.CLICK_IS_CONSUMED
     }
 
@@ -128,7 +132,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
      * Maneja el up button delegando el comportamiento
      */
     override fun onSupportNavigateUp(): Boolean {
-        return NavigationUI.navigateUp(navController,drawer_layout)
+        return NavigationUI.navigateUp(navController,binding.drawerLayout)
     }
 
     private fun isValidDestination(destination:Int):Boolean {

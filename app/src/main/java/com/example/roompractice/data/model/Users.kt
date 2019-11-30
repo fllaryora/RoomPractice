@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 class Users {
     @SerializedName("id")
-    var id: Int = -1
+    var id: Int? = null
     @SerializedName("username")
     var userName: String = ""
     @SerializedName("email")

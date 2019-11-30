@@ -3,7 +3,6 @@ package com.example.roompractice.presentation.auth
 import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.text.TextUtils
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -17,7 +16,6 @@ import androidx.lifecycle.Observer
 import com.example.roompractice.databinding.ActivityAuthBinding
 import com.example.roompractice.presentation.databinding.ActivityBindingProperty
 import com.example.roompractice.presentation.main.MainActivity
-import kotlinx.android.synthetic.main.activity_auth.*
 
 class AuthActivity : DaggerAppCompatActivity() {
 
@@ -56,6 +54,10 @@ class AuthActivity : DaggerAppCompatActivity() {
          *
          */
         binding.lifecycleOwner = this
+        /**
+         * This bind the databinding with MVVVM
+         */
+        binding.viewModel = viewModel
         setLogo()
         loginButtonClick()
         subscribeObserver()
@@ -67,20 +69,20 @@ class AuthActivity : DaggerAppCompatActivity() {
     private fun setLogo() {
         requestManager
             .load(logo)
-            .into(login_logo)
+            .into(binding.loginLogo)
     }
 
     private fun loginButtonClick() {
-        login_button.setOnClickListener {
-            if (TextUtils.isEmpty(user_id_input.text.toString())) return@setOnClickListener
-
+        binding.loginButton.setOnClickListener {
+            if (!viewModel.canPerformLogin()) {
+                return@setOnClickListener
+            }
             atemptLogin()
         }
     }
 
     private fun atemptLogin() {
-        val userID = Integer.parseInt(user_id_input.text.toString())
-        viewModel.authenticateUserById(userID)
+        viewModel.authenticateUserById()
     }
 
 
@@ -115,6 +117,17 @@ class AuthActivity : DaggerAppCompatActivity() {
             }
         })
     }
+
+    /**
+     * Show and hide the progress bar
+     *
+     * @param isVisible Boolean indicating that show or hide the progressbar
+     *
+     */
+    private fun showProgressBar(isVisible: Boolean) {
+        binding.progressBar.visibility = if (isVisible) View.VISIBLE else View.GONE
+    }
+
 
     /**
      * Navigate to [MainActivity] from [AuthActivity] on login success

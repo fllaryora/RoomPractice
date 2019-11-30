@@ -1,12 +1,11 @@
 package com.example.roompractice.presentation.main.post
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.roompractice.R
 import com.example.roompractice.data.model.Post
-import kotlinx.android.synthetic.main.layout_post_list_item.view.*
+import com.example.roompractice.databinding.LayoutPostListItemBinding
 
 class PostsRecyclerAdapter:  RecyclerView.Adapter<PostsRecyclerAdapter.ViewHolder>() {
 
@@ -22,9 +21,10 @@ class PostsRecyclerAdapter:  RecyclerView.Adapter<PostsRecyclerAdapter.ViewHolde
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostsRecyclerAdapter.ViewHolder {
-        val viewRow :View = LayoutInflater.from(parent.context)
-            .inflate(R.layout.layout_post_list_item,parent,false)
-        return ViewHolder(viewRow)
+        val layoutInflater : LayoutInflater = LayoutInflater.from(parent.context)
+        val binding : LayoutPostListItemBinding =
+            LayoutPostListItemBinding.inflate(layoutInflater, parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: PostsRecyclerAdapter.ViewHolder, position: Int) {
@@ -32,9 +32,10 @@ class PostsRecyclerAdapter:  RecyclerView.Adapter<PostsRecyclerAdapter.ViewHolde
         holder.bind(post)
     }
 
-    inner class ViewHolder(var view : View) : RecyclerView.ViewHolder(view) {
+    inner class ViewHolder(var binding: LayoutPostListItemBinding) : RecyclerView.ViewHolder(binding.root) {
         public fun bind(post: Post) {
-            view.title.text = post.title
+            binding.model = post
+            binding.executePendingBindings()
         }
     }
 }

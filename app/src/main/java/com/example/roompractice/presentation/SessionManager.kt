@@ -18,8 +18,9 @@ import javax.inject.Singleton
 @Singleton
 class SessionManager @Inject constructor() {
 
-    val TAG = SessionManager::class.java.name
-
+    companion object {
+        val TAG = SessionManager::class.java.name
+    }
     //Mediator live data is a sub class of live data which may observe other LiveData
     // objects and react on OnChanged events from them.
     private val cachedUser = MediatorLiveData<AuthResource<Users>>()

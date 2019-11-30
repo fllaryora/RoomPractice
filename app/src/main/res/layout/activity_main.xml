@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.roompractice.presentation.main.MainViewModel"/>
+    </data>
 <androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -31,7 +36,7 @@
             style="@style/Widget.AppCompat.ProgressBar"
             android:layout_centerInParent="true"
             android:id="@+id/progress_bar"
-            android:visibility="gone"
+            app:shouldIShowTheView="@{viewModel.showProgressBar}"
             android:elevation="20dp"/>
 
     </RelativeLayout>

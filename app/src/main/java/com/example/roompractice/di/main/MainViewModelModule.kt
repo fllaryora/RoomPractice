@@ -2,6 +2,7 @@ package com.example.roompractice.di.main
 
 import androidx.lifecycle.ViewModel
 import com.example.roompractice.di.ViewModelKey
+import com.example.roompractice.presentation.main.MainViewModel
 import com.example.roompractice.presentation.main.profile.ProfileViewModel
 import com.example.roompractice.presentation.main.post.PostsViewModel
 import dagger.Binds
@@ -29,4 +30,9 @@ abstract class MainViewModelModule {
     @IntoMap
     @ViewModelKey(PostsViewModel::class)
     abstract fun bindPostsViewModel(postsViewModel: PostsViewModel) : ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(MainViewModel::class)
+    abstract fun bindMainViewModel(authViewModel: MainViewModel) : ViewModel
 }

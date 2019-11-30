@@ -21,7 +21,9 @@ import kotlinx.android.synthetic.main.activity_auth.*
 
 class AuthActivity : DaggerAppCompatActivity() {
 
-    val TAG = AuthActivity::class.java.name
+    companion object {
+        val TAG = AuthActivity::class.java.name
+    }
 
     @Inject
     lateinit var logo: Drawable
@@ -90,23 +92,22 @@ class AuthActivity : DaggerAppCompatActivity() {
              */
             when(authResource.status) {
                 AuthResource.AuthStatus.LOADING -> {
-                    showProgressBar(true)
+                    viewModel.setProgressBar(true)
                 }
 
                 AuthResource.AuthStatus.AUTHENTICATED -> {
-                    showProgressBar(false)
+                    viewModel.setProgressBar(false)
                     Log.d(TAG,  "Login Success: ${authResource.data?.emailAddress}")
                     onLoginSuccess()
                 }
 
                 AuthResource.AuthStatus.NOT_AUTHENTICATED -> {
-                    showProgressBar(false)
-
+                    viewModel.setProgressBar(false)
                 }
 
                 AuthResource.AuthStatus.ERROR -> {
                     //TODO detectar la desconeccion de internet
-                    showProgressBar(false)
+                    viewModel.setProgressBar(false)
                     Toast.makeText(this,
                         "${authResource.message} \nDid you entered user id between 1 and 10?",
                         Toast.LENGTH_LONG).show()
@@ -114,17 +115,6 @@ class AuthActivity : DaggerAppCompatActivity() {
             }
         })
     }
-
-    /**
-     * Show and hide the progress bar
-     *
-     * @param isVisible Boolean indicating that show or hide the progressbar
-     *
-     */
-    private fun showProgressBar(isVisible: Boolean) {
-        progress_bar.visibility = if (isVisible) View.VISIBLE else View.GONE
-    }
-
 
     /**
      * Navigate to [MainActivity] from [AuthActivity] on login success

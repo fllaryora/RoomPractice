@@ -46,6 +46,6 @@ constructor(private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcard
     }
 
     companion object {
-        private val TAG = "ViewModelProviderFactor"
+        val TAG = ViewModelProviderFactory::class.java.name
     }
 }

@@ -15,8 +15,9 @@ import javax.inject.Inject
  */
 abstract class BaseActivity : DaggerAppCompatActivity() {
 
-    val TAG = BaseActivity::class.java.name
-
+    companion object {
+        val TAG = BaseActivity::class.java.name
+    }
     @Inject
     lateinit var sessionManager: SessionManager
 

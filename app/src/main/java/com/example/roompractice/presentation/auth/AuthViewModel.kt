@@ -2,6 +2,7 @@ package com.example.roompractice.presentation.auth
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.LiveDataReactiveStreams
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.roompractice.data.model.Users
 import com.example.roompractice.data.network.auth.AuthApi
@@ -20,8 +21,10 @@ import io.reactivex.functions.Function
 class AuthViewModel @Inject constructor (private var authApi: AuthApi,
                                          private var sessionManager: SessionManager): ViewModel(){
 
-    private val TAG = AuthViewModel::class.java.name
-    private val compositeDisposable = CompositeDisposable()
+    companion object {
+        val TAG = AuthViewModel::class.java.name
+    }
+        private val compositeDisposable = CompositeDisposable()
 
 
     fun authenticateUserById(userID: Int) {
@@ -63,4 +66,16 @@ class AuthViewModel @Inject constructor (private var authApi: AuthApi,
         super.onCleared()
     }
 
+    val showProgressBar : MutableLiveData<Boolean> = MutableLiveData()
+
+    fun setProgressBar(isShowed :Boolean){
+        showProgressBar.value = isShowed
+    }
+
+    val userModel : MutableLiveData<Users> = MutableLiveData()
+
+    init {
+        showProgressBar.value = false
+        userModel.value = Users()
+    }
 }

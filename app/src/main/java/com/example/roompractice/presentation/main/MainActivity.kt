@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -11,9 +12,11 @@ import com.example.roompractice.R
 import com.example.roompractice.databinding.ActivityMainBinding
 import com.example.roompractice.presentation.base.BaseActivity
 import com.example.roompractice.presentation.databinding.ActivityBindingProperty
+import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
 import com.example.roompractice.utils.Constants
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -21,12 +24,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private val navController by lazy { findNavController(nav_host_fragment) }
 
     /**
+     * Se va a encargar de instanciar el viewModel
+     */
+    @Inject
+    lateinit var viewModelFactory: ViewModelProviderFactory
+
+    lateinit var viewModel: MainViewModel
+
+    /**
      * binding by lazy ActivityBindingProperty
      */
     val binding : ActivityMainBinding by ActivityBindingProperty(R.layout.activity_main)
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Teniendo la dependencia del lifecycle puesta en el build.gradle
+        // se puede conectar el activity con el viewModel
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
         /**
          *  two way
          *  but it isn't called here activity never create the view

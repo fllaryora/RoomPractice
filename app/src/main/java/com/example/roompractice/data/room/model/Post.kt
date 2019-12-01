@@ -13,4 +13,4 @@ data class Post (
     @PrimaryKey(autoGenerate = true) var  id: Long?,
     @ColumnInfo(name = "user_id") var userId :Long?,
     @ColumnInfo(name = "title")  var title: String?,
-    @ColumnInfo(name = "title") var  body: String?)
+    @ColumnInfo(name = "body") var  body: String?)

@@ -80,7 +80,7 @@ dependencies {
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     // RxJava
-    implementation "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxjavaVersion"
     // Reactive Streams (convert Observable to LiveData)
     implementation "android.arch.lifecycle:reactivestreams:$reactivestreamsVersion"
 
@@ -99,6 +99,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     // acces to database via server
     //debugImplementation "com.amitshekhar.android:debug-db:$amitVersion"
+
+    //ROOM-RX
+    implementation "androidx.room:room-rxjava2:$roomVersion"
 
     // architecture comp. navigation
     implementation "androidx.navigation:navigation-fragment-ktx:$navVersion"

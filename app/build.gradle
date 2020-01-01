@@ -81,6 +81,8 @@ dependencies {
 
     // RxJava
     implementation "io.reactivex.rxjava2:rxkotlin:$rxjavaVersion"
+    //Use LiveDataReactiveStreams instead of AndroidThreadSchedulers
+    //implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
     // Reactive Streams (convert Observable to LiveData)
     implementation "android.arch.lifecycle:reactivestreams:$reactivestreamsVersion"
 

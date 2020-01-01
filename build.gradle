@@ -41,7 +41,6 @@ ext {
     reactivestreamsVersion = '1.1.1'
     retrofitVersion = '2.6.1'
     rxcalladapterVersion = '2.6.1'
-    //rxcalladapterVersion = '2.5.0'
     glideVersion = '4.10.0'
  }
 

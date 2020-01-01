@@ -3,11 +3,16 @@ package com.example.roompractice.di
 import android.app.Application
 import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
+import androidx.room.Room
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.RequestOptions
 import com.example.roompractice.BuildConfig
 import com.example.roompractice.R
+import com.example.roompractice.data.room.MyDataBase
+import com.example.roompractice.data.room.dao.UsersDAO
+import com.example.roompractice.di.main.MainScope
+import com.example.roompractice.utils.Constants
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -53,7 +58,7 @@ class AppModule {
     }
 
     /**
-     * retrofit para TODOS.
+     * retrofit for ALL.
      */
     @Singleton
     @Provides
@@ -64,4 +69,26 @@ class AppModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
+    /**
+     * room for ALL.
+     */
+    @Singleton
+    @Provides
+    internal fun provideDatabase(application: Application): MyDataBase {
+        return Room.databaseBuilder(application.applicationContext,
+            MyDataBase::class.java, Constants.DATABASE_NAME
+        ).build()
+    }
+
+
+    /**
+     * users para ALL.
+     */
+    @Singleton
+    @Provides
+    internal fun provideUsersDAO(database: MyDataBase): UsersDAO {
+        return database.usersDAO()
+    }
+
 }

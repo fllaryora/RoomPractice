@@ -32,23 +32,6 @@ class MainModule {
         return PostsRecyclerAdapter()
     }
 
-    /**
-     * room para MainScope.
-     */
-    @MainScope
-    @Provides
-    internal fun provideDatabase(application: Application): MyDataBase {
-        return Room.databaseBuilder(application.applicationContext,
-            MyDataBase::class.java, Constants.DATABASE_NAME
-        ).build()
-    }
-
-    @MainScope
-    @Provides
-    internal fun provideUsersDAO(database: MyDataBase): UsersDAO {
-        return database.usersDAO()
-    }
-
     @MainScope
     @Provides
     internal fun providePostDAO(database: MyDataBase): PostDAO {

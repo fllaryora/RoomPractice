@@ -14,7 +14,7 @@ interface UsersDAO {
     fun getItemList(): Flowable<List<Users>>
 
     @Query("select * from user where id = :id LIMIT 1")
-    fun getItemById(id:Long): Flowable<Users>
+    fun getItemById(id:Long): Single<Users>
 
     /**
      * I wanted to have a query with subquery

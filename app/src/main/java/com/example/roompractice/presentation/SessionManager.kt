@@ -44,7 +44,6 @@ class SessionManager @Inject constructor() {
     fun logout() {
         Log.d(TAG, "logout: logging out..")
         cachedUser.value = AuthResource.logout()
-        //todo No desloguea bien....
     }
 
     fun getAuthUser() : LiveData<AuthResource<Users>> {

@@ -7,8 +7,8 @@ import kotlin.annotation.MustBeDocumented
 
 
 /**
- * Es una anotacion que va a acarrear keys.
- * Para decirle a dagger que soy las key le agrego la anotacion [MapKey]
+ * It's a annotation that's going to carry keys on.
+ * To tell dagger what the keys are The programmer adds the notation [MapKey]
  */
 @MustBeDocumented
 @Target(AnnotationTarget.FUNCTION, AnnotationTarget.PROPERTY_GETTER, AnnotationTarget.PROPERTY_SETTER)
@@ -17,8 +17,8 @@ import kotlin.annotation.MustBeDocumented
 internal annotation class ViewModelKey(val value: KClass<out ViewModel>)
 
 /**
- * Esto
+ * This
  * KClass<out ViewModel>
- *     significa
+ *     means
  * Some class that extend viewModel
 */

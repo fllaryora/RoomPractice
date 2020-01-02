@@ -2,6 +2,7 @@ package com.example.roompractice.data.network.main
 
 import com.example.roompractice.data.model.Post
 import io.reactivex.Flowable
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -13,6 +14,6 @@ interface MainApi {
      */
     // /posts?userId=1/
     @GET("posts")
-    fun getPostFromUsers(@Query("id") id: Int): Flowable<List<Post>>
+    fun getPostFromUsers(@Query("id") id: Int): Single<List<Post>>
 
 }

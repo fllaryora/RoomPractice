@@ -13,8 +13,8 @@ import io.reactivex.disposables.CompositeDisposable
 
 /**
  * Auth Api View Model Class
- *  Primero se la extiende de [ViewModel]
- *  Segundo se crea el constructor vacio con un AT [Inject]
+ *  First extends from [ViewModel]
+ *  Second make a empty constructor with an annotation [Inject]
  */
 class AuthViewModel @Inject constructor (private var repository: LoginRepository,
                                          private var sessionManager: SessionManager): ViewModel(){
@@ -30,7 +30,7 @@ class AuthViewModel @Inject constructor (private var repository: LoginRepository
         sessionManager.authenticatedWithId(queryUserId(userID))
     }
 
-    fun queryUserId(userID: Int) : LiveData<AuthResource<Users>> {
+    private fun queryUserId(userID: Int) : LiveData<AuthResource<Users>> {
         return LiveDataReactiveStreams.fromPublisher(
             repository.loginUser(userID)
 

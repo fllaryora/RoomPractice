@@ -16,9 +16,9 @@ abstract class AuthViewModelModule {
      *
      * Under the hood it is providing [AuthViewModel]
      *
-     * Con la anotacion [IntoMap], le aviso que voy a usar
-     * mi diccionario enjendro de la naturaleza [ViewModelKey].
-     * AuthViewModel es la key, y el ViewModel es el valor
+     * With [IntoMap] annotation it warns to XXX?? It going to use it.
+     * In my dictionary [ViewModelKey].
+     * AuthViewModel is the key, and ViewModel is the value
      *
      */
 

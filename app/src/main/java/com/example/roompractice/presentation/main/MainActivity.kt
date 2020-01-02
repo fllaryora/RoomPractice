@@ -25,7 +25,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     }
 
     /**
-     * Se va a encargar de instanciar el viewModel
+     * It will be in charge of to instantiate the viewModel
      */
     @Inject
     lateinit var viewModelFactory: ViewModelProviderFactory
@@ -39,8 +39,8 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // Teniendo la dependencia del lifecycle puesta en el build.gradle
-        // se puede conectar el activity con el viewModel
+        // Having the lifecycle dependency set in the build.gradle file
+        // we are able to connect the activity with viewModel
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
         /**
          *  two way
@@ -89,7 +89,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         NavigationUI.setupActionBarWithNavController(this, navController, binding.drawerLayout)
         NavigationUI.setupWithNavController(binding.navView, navController)
         /**
-         * para que consuma los clicks locales en onNavigationItemSelected
+         * to consume the local clicks in onNavigationItemSelected
          */
         binding.navView.setNavigationItemSelectedListener(this)
 
@@ -121,15 +121,14 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
         item.isChecked = true
         /**
-         * lo llevamos de vuelta al START si no seleccionamos nada al cerrar.
+         * we take it back to START if we don't select anything at closing.
          */
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return Constants.CLICK_IS_CONSUMED
     }
 
     /**
-     * Asumiendo que el up button el = pero con 3 barras.
-     * Maneja el up button delegando el comportamiento
+     * Assuming that the up-button manages the up button by delegating the behavior
      */
     override fun onSupportNavigateUp(): Boolean {
         return NavigationUI.navigateUp(navController,binding.drawerLayout)

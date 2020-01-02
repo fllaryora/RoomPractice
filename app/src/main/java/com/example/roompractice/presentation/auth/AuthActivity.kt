@@ -4,7 +4,6 @@ import android.content.Intent
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.RequestManager
@@ -30,7 +29,7 @@ class AuthActivity : DaggerAppCompatActivity() {
     lateinit var requestManager: RequestManager
 
     /**
-     * Se va a encargar de instanciar el viewModel
+     * viewModelFactory will be in charge of to instantiate  viewModel
      */
     @Inject
     lateinit var viewModelFactory: ViewModelProviderFactory
@@ -45,8 +44,8 @@ class AuthActivity : DaggerAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Teniendo la dependencia del lifecycle puesta en el build.gradle
-        // se puede conectar el activity con el viewModel
+        // Having the lifecycle dependency set in the build.gradle file
+        // we are able to connect the activity with viewModel
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(AuthViewModel::class.java)
         /**
          *  two way
@@ -90,7 +89,7 @@ class AuthActivity : DaggerAppCompatActivity() {
         viewModel.observeUser().observe(this, Observer {authResource ->
             //Log.d(TAG,  "On Change: ${authResource.emailAddress}")
             /**
-             * aca manejo el cambio de estado de la auth
+             * Here It handle the change of status of auth
              */
             when(authResource.status) {
                 AuthResource.AuthStatus.LOADING -> {
@@ -108,7 +107,7 @@ class AuthActivity : DaggerAppCompatActivity() {
                 }
 
                 AuthResource.AuthStatus.ERROR -> {
-                    //TODO detectar la desconeccion de internet
+                    //TODO To detect network issues
                     viewModel.setProgressBar(false)
                     Toast.makeText(this,
                         "${authResource.message} \nDid you entered user id between 1 and 10?",
@@ -117,17 +116,6 @@ class AuthActivity : DaggerAppCompatActivity() {
             }
         })
     }
-
-    /**
-     * Show and hide the progress bar
-     *
-     * @param isVisible Boolean indicating that show or hide the progressbar
-     *
-     */
-    private fun showProgressBar(isVisible: Boolean) {
-        binding.progressBar.visibility = if (isVisible) View.VISIBLE else View.GONE
-    }
-
 
     /**
      * Navigate to [MainActivity] from [AuthActivity] on login success

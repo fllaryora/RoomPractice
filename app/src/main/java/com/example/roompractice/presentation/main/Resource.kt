@@ -1,7 +1,7 @@
 package com.example.roompractice.presentation.main
 
 /**
- * ES la forma como se debe wrapear un modelo .
+ * This is the way about how to wrap a user model of resource.
  */
 class Resource <T>(val status: Status, val data: T?, val message: String?){
 

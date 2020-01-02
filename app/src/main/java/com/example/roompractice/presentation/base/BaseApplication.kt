@@ -11,7 +11,7 @@ import dagger.android.support.DaggerApplication
  *
  * I want to make our AppComponent live in the entire lifecycler of an
  * application so we can instantiate it on applicationInjection
- * overrided method which is comming from [DaggerApplication]
+ * overrided method which is coming from [DaggerApplication]
  */
 
 class BaseApplication: DaggerApplication() {

@@ -5,6 +5,4 @@ import javax.inject.Scope
 @Scope
 @MustBeDocumented
 @kotlin.annotation.Retention(AnnotationRetention.RUNTIME)
-internal annotation class AuthScope {
-
-}
+internal annotation class AuthScope

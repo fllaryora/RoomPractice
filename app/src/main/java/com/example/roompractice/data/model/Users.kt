@@ -12,7 +12,7 @@ class Users {
     @SerializedName("website")
     var website: String = ""
 
-    constructor() {}
+    constructor()
 
     constructor(id: Int, userName: String, emailAddress: String, website: String) : this() {
         this.id = id

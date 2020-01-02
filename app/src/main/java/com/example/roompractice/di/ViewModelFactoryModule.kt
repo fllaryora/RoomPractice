@@ -17,9 +17,9 @@ import dagger.Module
 abstract class ViewModelFactoryModule {
 
     /**
-     * Binds es un puto pasamano
-     * Esto es similar a usar un AT provider
-     * que recive una dependencia y retorna la misma dependencia sin hacer nada.
+     * Binds is a f***ing handrail
+     * This is similar to using an annotation provider that receives a dependency
+     *  and returns the same dependency without doing anything.
      */
     @Binds
     abstract fun bindViewModelFactory(viewModelFactory: ViewModelProviderFactory)

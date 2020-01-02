@@ -20,11 +20,11 @@ import dagger.android.ContributesAndroidInjector
  * This class is abstract because it says every activity is a potential client.
  *
  * This Class [ActivityBuilderModule] is responsible for for android injection
- * for the activity with in the application to avoid the seprate injection in each activity
+ * for the activity with in the application to avoid the separate injection in each activity
  *
  * {@linkplain dagger.android.AndroidInjection#inject(Activity)}
  *
- * [AuthViewModel] can be access from Auth Activity
+ * AuthViewModel can be access from Auth Activity
  * only so it is the concept of sub-modules
  *
  */
@@ -36,12 +36,12 @@ abstract class ActivityBuilderModule {
      * Let dagger knows that all activity is a potential client
      * Automatically create sub-component
      *
-     *  * Aca esta la verga del scopping !!!
-     * al setear un modulo particular lara el authactivity
+     * Here it is the magic of scopping !!!
+     * During the set of particular module to  authActivity
      * @return
      *
      * Apply the auth scope to the sub component,
-     * that subcomponent will own authscope
+     * that subComponent will own authScope
      *
      */
     @AuthScope

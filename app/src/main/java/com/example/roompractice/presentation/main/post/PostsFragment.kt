@@ -18,7 +18,7 @@ import com.example.roompractice.utils.VerticalSpacingItemDecoration
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-class PostsFragment constructor(): DaggerFragment() {
+class PostsFragment : DaggerFragment() {
     companion object {
         val TAG = PostsFragment::class.java.name
     }
@@ -64,10 +64,10 @@ class PostsFragment constructor(): DaggerFragment() {
 
     private fun subscribeObservers() {
         /**
-         * Se tiene que tener en cuenta que el ciclo de vida de los fragments es diferente al ciclo de vida
-         * de las activities.
-         * Por esta razon es diferente al de la activity
-         * Y debemos estar seguros de remover los viejos vinagres (los observers) todo al rededor.
+         * The life cycle of the fragments has to be considered as
+         * different from the life cycle of the activities.
+         * For this reason it is different from activity and
+         * we must be sure to remove the old observers.
          */
         postsViewModel.observePosts().removeObservers(viewLifecycleOwner)
         postsViewModel.observePosts().observe(viewLifecycleOwner, Observer {

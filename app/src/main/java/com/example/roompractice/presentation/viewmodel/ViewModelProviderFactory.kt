@@ -6,10 +6,9 @@ import javax.inject.Inject
 import javax.inject.Provider
 
 /**
- *  [ViewModelProviderFactory] es la clase que facilita la inyeccion de  viewmodels en las vistas
- *  en dagger.
- *  Es el workarround para que un viewModel pueda recibir injecciones.
- *  Se supone que en el futuro google va a cambiar android y no se va a necesitar mas esta clase.
+ * [ViewModelProviderFactory] is the class that facilitates the injection of viewmodels into dagger
+ * This workarround is to allow a viewModel to receive injections.
+ * In the future google is supposed to change android and you won't need this class anymore.
  */
 @Suppress("UNCHECKED_CAST")
 class ViewModelProviderFactory @Inject
@@ -32,9 +31,7 @@ constructor(private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcard
         }
 
         // if this is not one of the allowed keys, throw exception
-        if (creator == null) {
-            throw IllegalArgumentException("unknown model class $modelClass")
-        }
+        requireNotNull(creator) { "unknown model class $modelClass" }
 
         // return the Provider
         try {

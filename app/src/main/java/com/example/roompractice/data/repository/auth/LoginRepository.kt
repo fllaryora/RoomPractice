@@ -2,6 +2,7 @@ package com.example.roompractice.data.repository.auth
 
 import android.util.Log
 import com.example.roompractice.data.model.Users
+import com.example.roompractice.data.room.model.Users as RoomUser
 import com.example.roompractice.data.network.auth.AuthApi
 import com.example.roompractice.data.room.dao.UsersDAO
 import com.example.roompractice.presentation.auth.AuthResource
@@ -28,14 +29,14 @@ class LoginRepository @Inject constructor(private val authApi: AuthApi, private 
             .subscribeOn(Schedulers.io())
     }
 
-    fun transFormBaseToApiFormat(databaseUser: com.example.roompractice.data.room.model.Users) : Users {
+    private fun transFormBaseToApiFormat(databaseUser: RoomUser) : Users {
         val user: Int  = databaseUser.id?.toInt() ?: -1
         return Users(user , databaseUser.userName?:"" ,
             databaseUser.emailAddress ?:"", databaseUser.website?:"")
     }
 
-    fun transFormApiToBaseFormat(apiUser: Users) : com.example.roompractice.data.room.model.Users {
-        return com.example.roompractice.data.room.model.Users(apiUser.id?.toLong(),apiUser.userName,
+    private fun transFormApiToBaseFormat(apiUser: Users) : RoomUser {
+        return RoomUser(apiUser.id?.toLong(),apiUser.userName,
             apiUser.emailAddress, apiUser.website)
     }
 }

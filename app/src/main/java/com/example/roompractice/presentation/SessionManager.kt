@@ -5,15 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.example.roompractice.data.model.Users
 import com.example.roompractice.presentation.auth.AuthResource
-import androidx.lifecycle.Observer
 import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
  * Session Manager Class
- * Guarda la informacion para saver si el usuario esta autenticado o no.
+ * It Saves information to know if the user is authenticated or not.
  *
- * se evita tener un MediatorLiveData en cada activity
+ * It avoid to have MediatorLiveData in each activity
  */
 @Singleton
 class SessionManager @Inject constructor() {
@@ -30,14 +29,14 @@ class SessionManager @Inject constructor() {
         //TODO
         //if(cachedUser.value == null) {
             cachedUser.value = AuthResource.loading(null)
-            cachedUser.addSource(source, Observer {
+            cachedUser.addSource(source) {
                 cachedUser.value = it
-                //apenas lo deja de usar lo remueve al source
+                //as soon as it stops using it it removes it to the source
                 cachedUser.removeSource(source)
-            })
+            }
         } else {
             Log.d(TAG, "authenticatedWithId: previous session detected")
-            //todo loguear y no dejarlo colgado
+            //todo in this line it will be hanged. Please avoid it.
         }
     }
 

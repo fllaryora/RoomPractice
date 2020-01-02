@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">RoomPractice</string>
-    <string name="action_settings">Settings</string>
     <string name="logout">Logout</string>
     <string name="profile">Profile</string>
     <string name="posts">Post</string>
     <string name="login_action">Login</string>
     <string name="user_id_hint">User id</string>
+    <string name="description_image_logo">Image of the logo of the application</string>
 </resources>

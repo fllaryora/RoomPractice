@@ -8,13 +8,12 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.roompractice.R
-import com.example.roompractice.data.model.Users
 import com.example.roompractice.databinding.FragmentProfileBinding
+import com.example.roompractice.presentation.auth.AuthResource
+import com.example.roompractice.presentation.databinding.withTwoWayBinding
 import com.example.roompractice.presentation.viewmodel.ViewModelProviderFactory
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
-import com.example.roompractice.presentation.auth.AuthResource
-import com.example.roompractice.presentation.databinding.withTwoWayBinding
 
 /**
  * Profile Fragment
@@ -22,7 +21,7 @@ import com.example.roompractice.presentation.databinding.withTwoWayBinding
 class ProfileFragment : DaggerFragment() {
 
 
-    lateinit var profileViewModel: ProfileViewModel
+    private lateinit var profileViewModel: ProfileViewModel
 
     @Inject
     lateinit var providerFactory: ViewModelProviderFactory
@@ -56,10 +55,10 @@ class ProfileFragment : DaggerFragment() {
 
     private fun subscribeObservers() {
         /**
-         * Se tiene que tener en cuenta que el ciclo de vida de los fragments es diferente al ciclo de vida
-         * de las activities.
-         * Por esta razon es diferente al de la activity
-         * Y debemos estar seguros de remover los viejos vinagres (los observers) todo al rededor.
+         * The life cycle of the fragments has to be considered as
+         * different from the life cycle of the activities.
+         * For this reason it is different from activity and
+         * we must be sure to remove the old observers.
          */
         profileViewModel.getAuthenticatedUser().removeObservers(viewLifecycleOwner)
         profileViewModel.getAuthenticatedUser().observe(viewLifecycleOwner, Observer {

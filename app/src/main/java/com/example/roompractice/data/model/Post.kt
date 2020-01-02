@@ -15,7 +15,7 @@ class Post {
     @SerializedName("body")
     var  body: String = ""
 
-    constructor() {}
+    constructor()
 
     constructor(id: Int, userId: Int, title: String, body: String) : this() {
         this.id = id

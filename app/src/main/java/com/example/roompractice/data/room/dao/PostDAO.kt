@@ -7,6 +7,7 @@ import androidx.room.Query
 import com.example.roompractice.data.room.model.Post
 import io.reactivex.Flowable
 import io.reactivex.Maybe
+import io.reactivex.Single
 
 @Dao
 interface PostDAO {
@@ -24,6 +25,6 @@ interface PostDAO {
     fun addData(post: List<Post>): Maybe<List<Long>>
 
     @Query("select * from post where user_id = :userId LIMIT 1")
-    fun getPostsByUser(userId:Long): Flowable<List<Post>>
+    fun getPostsByUser(userId:Long): Single<List<Post>>
 
 }

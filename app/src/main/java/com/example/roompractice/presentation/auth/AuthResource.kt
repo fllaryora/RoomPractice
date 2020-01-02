@@ -1,7 +1,7 @@
 package com.example.roompractice.presentation.auth
 
 /**
- * ES la forma como se debe wrapear un modelo de usuario de autenticacion.
+ * This is the way about how to wrap a user model of authentication.
  */
 class AuthResource<T>(val status: AuthStatus, val data: T?, val message: String?) {
 

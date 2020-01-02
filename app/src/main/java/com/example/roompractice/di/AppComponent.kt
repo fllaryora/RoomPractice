@@ -20,7 +20,7 @@ import javax.inject.Singleton
  * AppComponent is act as a server whereas, [BaseApplication] act as a client.
  * Dagger interaction is like client-server interaction
  *
- * Anotated with [Singleton] Scope to tell dagger to keep it in the memory while application exists
+ * Annotated with [Singleton] Scope to tell dagger to keep it in the memory while application exists
  * and destroy it when application destroy
  *
  * Scopes are a way to give a name to the lifetime of a component.
@@ -46,7 +46,7 @@ import javax.inject.Singleton
 interface AppComponent : AndroidInjector<BaseApplication> {
 
     /**
-     Overrrides the bilder
+     * Overrides the builder
      */
     @Component.Builder
     interface Builder {

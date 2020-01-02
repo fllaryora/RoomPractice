@@ -1,13 +1,10 @@
 package com.example.roompractice.di.main
 
-import android.app.Application
-import androidx.room.Room
 import com.example.roompractice.data.network.main.MainApi
+import com.example.roompractice.data.repository.main.PostRepository
 import com.example.roompractice.data.room.MyDataBase
 import com.example.roompractice.data.room.dao.PostDAO
-import com.example.roompractice.data.room.dao.UsersDAO
 import com.example.roompractice.presentation.main.post.PostsRecyclerAdapter
-import com.example.roompractice.utils.Constants
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -36,6 +33,12 @@ class MainModule {
     @Provides
     internal fun providePostDAO(database: MyDataBase): PostDAO {
         return database.postDAO()
+    }
+
+    @MainScope
+    @Provides
+    internal fun providePostRepository( mainApi: MainApi, postDAO: PostDAO): PostRepository {
+        return PostRepository(mainApi, postDAO)
     }
 
 }

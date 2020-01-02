@@ -11,7 +11,6 @@ import com.example.roompractice.BuildConfig
 import com.example.roompractice.R
 import com.example.roompractice.data.room.MyDataBase
 import com.example.roompractice.data.room.dao.UsersDAO
-import com.example.roompractice.di.main.MainScope
 import com.example.roompractice.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -21,20 +20,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 
-
 /**
  * [AppModule] class is responsible for providing application level dependencies
  *
- * Anotated with singleton annotation to tell dagger these dependencies also exists
+ * Annotated with singleton annotation to tell dagger these dependencies also exists
  * when [AppComponent] alive and destroy these dependencies when [AppComponent] destroy
  */
 @Module
 class AppModule {
 
     /**
-     * internal es el equivalente al static en java para dagger.
-     * La funcion manejara los placeholders y los errores de network cuando glide haga llamadas al
-     * repo de imagenes.
+     * internal reserved-word is the equivalent to static for java in dagger.
+     * This function handles the  placeholders and  errors coming from network
+     * when glide do the calls to image repository.
      */
     @Singleton
     @Provides
@@ -83,7 +81,7 @@ class AppModule {
 
 
     /**
-     * users para ALL.
+     * users for ALL.
      */
     @Singleton
     @Provides

@@ -7,7 +7,6 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import kotlin.properties.ReadOnlyProperty
 import kotlin.reflect.KProperty
 
@@ -16,7 +15,7 @@ class ActivityBindingProperty<out T : ViewDataBinding>(
 ) : ReadOnlyProperty<Activity, T> {
 
     /**
-     * la variable binding se crea una sola vez
+     * the binding variable is created only once.
      */
 
     private var binding: T? = null
